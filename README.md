@@ -211,8 +211,6 @@ Automatisation de la création de comptes étudiants en masse :
 |---------|-------------|
 | `RP-08-ANDREO-Vincent.docx` | Rapport technique complet |
 | `Présentation-5min-RP08-ANDREO-Vincent.docx` | Texte de présentation orale 5 minutes |
-| `gamma-rp08.md` | Résumé structuré + cheat sheets |
-| `gamma-rp08-complet.md` | Version complète avec diagrammes |
 
 ---
 
