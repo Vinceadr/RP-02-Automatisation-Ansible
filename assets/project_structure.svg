@@ -1,6 +1,6 @@
 <svg width="670" height="452" viewBox="0 0 670 452" xmlns="http://www.w3.org/2000/svg">
   <title>Structure projet Ansible - RP-08</title>
-  <rect x="0" y="0" width="670" height="452" rx="10" fill="#F6F8FA" stroke="#D0D7DE" stroke-width="1"/>
+  <rect x="0" y="0" width="670" height="452" rx="10" fill="none" stroke="#D0D7DE" stroke-width="1"/>
   <line x1="27" y1="27" x2="27" y2="417" stroke="#C8C6BE" stroke-width="1.2" stroke-linecap="round"/>
   <line x1="27" y1="53" x2="46" y2="53" stroke="#C8C6BE" stroke-width="1.2" stroke-linecap="round"/>
   <line x1="27" y1="105" x2="46" y2="105" stroke="#C8C6BE" stroke-width="1.2" stroke-linecap="round"/>
