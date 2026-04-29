@@ -1,4 +1,4 @@
-# RP-08 — Automatisation Ansible & Infrastructure as Code
+# RP-02 — Automatisation Ansible & Infrastructure as Code
 
 **Réalisation Professionnelle — BTS SIO SISR**
 **ANDREO Vincent — IRIS Nice — 2026**
@@ -166,7 +166,7 @@ Automatisation de la création de comptes étudiants en masse :
 - **Controller** : Ansible 2.16+ sur poste Linux/Windows (WSL2)
 - **Cible** : Debian 12 (Bookworm), serveur IRIS Nice
 - **Orchestration** : Docker Compose pour la stack monitoring
-- **VCS** : GitHub (`Vinceadr/RP-08-Automatisation-Ansible`)
+- **VCS** : GitHub (`Vinceadr/RP-02-Automatisation-Ansible`)
 - **École** : IRIS Nice — Promotion BTS SIO SISR 2025-2026
 
 ---
@@ -175,8 +175,8 @@ Automatisation de la création de comptes étudiants en masse :
 
 | Fichier | Description |
 |---------|-------------|
-| `RP-08-ANDREO-Vincent.docx` | Rapport technique complet |
-| `Présentation-5min-RP08-ANDREO-Vincent.docx` | Texte de présentation orale 5 minutes |
+| `RP-02-ANDREO-Vincent.docx` | Rapport technique complet |
+| `Présentation-5min-RP02-ANDREO-Vincent.docx` | Texte de présentation orale 5 minutes |
 
 ---
 
