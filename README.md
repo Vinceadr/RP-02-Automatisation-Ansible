@@ -120,12 +120,17 @@ Automatisation de la création de comptes étudiants en masse :
     name: "{{ item.login }}"
     firstname: "{{ item.prenom }}"
     surname: "{{ item.nom }}"
-    password: "{{ item.password | vault }}"
+    password: "{{ item.password }}"  # Variable chiffrée via ansible-vault encrypt_string
     groups:
       - "Etudiants-{{ item.classe }}"
     state: present
   loop: "{{ etudiants }}"
+  no_log: true  # Ne pas loguer les mots de passe
 ```
+
+> **Note Ansible Vault :** Les variables `item.password` sont pré-chiffrées avec
+> `ansible-vault encrypt_string 'valeur' --name 'var_name'` et stockées dans
+> `group_vars/all/vault.yml`. Aucun mot de passe n'apparaît en clair dans les playbooks.
 
 - Import depuis fichier CSV (liste des élèves IRIS)
 - Création automatique des groupes par classe
@@ -192,7 +197,7 @@ Automatisation de la création de comptes étudiants en masse :
 
 | Fichier | Description |
 |---------|-------------|
-| `RP-02-ANDREO-Vincent.docx` | Rapport technique complet |
+| `RP-08-ANDREO-Vincent-V2.docx` | Rapport technique complet |
 
 ---
 
