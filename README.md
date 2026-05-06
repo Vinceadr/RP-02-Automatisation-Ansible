@@ -1,4 +1,4 @@
-# RP-08 — Automatisation Ansible & Infrastructure as Code
+# RP-02 — Automatisation Ansible & Infrastructure as Code
 
 **Réalisation Professionnelle — BTS SIO SISR**
 **ANDREO Vincent — IRIS Nice — 2026**
@@ -192,8 +192,7 @@ Automatisation de la création de comptes étudiants en masse :
 
 | Fichier | Description |
 |---------|-------------|
-| `RP-08-ANDREO-Vincent.docx` | Rapport technique complet |
-| `Présentation-5min-RP08-ANDREO-Vincent.docx` | Texte de présentation orale 5 minutes |
+| `RP-02-ANDREO-Vincent.docx` | Rapport technique complet |
 
 ---
 
