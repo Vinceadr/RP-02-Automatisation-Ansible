@@ -176,7 +176,6 @@ Automatisation de la création de comptes étudiants en masse :
 | Fichier | Description |
 |---------|-------------|
 | `RP-02-ANDREO-Vincent.docx` | Rapport technique complet |
-| `Présentation-5min-RP02-ANDREO-Vincent.docx` | Texte de présentation orale 5 minutes |
 
 ---
 
