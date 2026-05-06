@@ -9,7 +9,7 @@
 
 Dans le cadre du BTS SIO option SISR, cette réalisation professionnelle porte sur l'**automatisation de l'infrastructure du lycée IRIS Nice** via **Ansible** (Infrastructure as Code).
 
-L'objectif était de déployer une stack de monitoring complète (Prometheus + Grafana + Loki), d'automatiser la gestion des comptes utilisateurs Active Directory pour la rentrée scolaire, et de sécuriser les secrets d'infrastructure avec Ansible Vault.
+L'objectif était de déployer une stack de monitoring complète (Prometheus + Grafana + Loki + Traefik HTTPS), d'automatiser la gestion des comptes utilisateurs Active Directory pour la rentrée scolaire, d'intégrer l'authentification LDAP dans Grafana, et de sécuriser les secrets d'infrastructure avec Ansible Vault.
 
 ---
 
@@ -37,10 +37,13 @@ L'objectif était de déployer une stack de monitoring complète (Prometheus + G
 
 | Service | Port | Rôle |
 |---------|------|------|
+| **Traefik v3** | 443/80 | Reverse proxy HTTPS (wildcard *.iris.a3n.fr, Let’s Encrypt) |
 | **Prometheus** | 9090 | Collecte métriques (scrape toutes les 15s) |
-| **Grafana** | 3000 | Dashboards (système, réseau, conteneurs) |
+| **Grafana** | 3000 | Dashboards + auth LDAP (dc=mediaschool,dc=local) |
 | **Loki** | 3100 | Agrégation centralisée des logs |
 | **Promtail** | 9080 | Agent de collecte de logs → Loki |
+| **Alertmanager** | 9093 | Gestion alertes (CPU/RAM/disk) |
+| **Blackbox Exporter** | 9115 | Sondes HTTP/ICMP (disponibilité services) |
 | **Node Exporter** | 9100 | Métriques système (CPU, RAM, disk, réseau) |
 | **cAdvisor** | 8080 | Métriques conteneurs Docker |
 
@@ -53,6 +56,20 @@ L'objectif était de déployer une stack de monitoring complète (Prometheus + G
 | Plage réseau | 10.0.0.0/24 |
 | Port | 51820 |
 | Chiffrement | Curve25519 + ChaCha20-Poly1305 |
+
+### HTTPS & Reverse Proxy (rôle `traefik`)
+
+- **Traefik v3** en reverse proxy devant tous les services monitoring
+- Certificats Let’s Encrypt wildcard `*.iris.a3n.fr` (DNS Challenge OVH)
+- Tous les services accessibles en HTTPS (443) — plus aucun port HTTP:8080 exposé
+- Configuration : `traefik.yml` + labels Docker Compose
+
+### Authentification LDAP Grafana
+
+- Connexion Grafana → OpenLDAP `ldaps://iris.lan:636`
+- Configuration : `ldap.toml` (bind DN `cn=admin,dc=mediaschool,dc=local`)
+- Mapping groupes LDAP → rôles Grafana (Admin/Editor/Viewer)
+- Test validé : comptes étudiants iris.lan connectés (vincenta = Admin)
 
 ### Sécurité secrets
 
@@ -151,13 +168,13 @@ Automatisation de la création de comptes étudiants en masse :
 
 ---
 
-## Compétences validées
+## Compétences validées (Bloc B2 + B3 — E5 SISR)
 
-- **A1.2** — Mise en place de l'infrastructure (IaC / Ansible)
-- **A2.2** — Gestion des identités et des accès (Active Directory)
-- **A3.1** — Administration automatisée des serveurs
-- **A3.2** — Supervision et monitoring de l'infrastructure
-- **A4.1** — Participation à la gestion du parc informatique
+- **B2.1** — Concevoir une solution d'infrastructure (architecture IaC, Traefik, LDAP Grafana)
+- **B2.2** — Installer, tester et déployer (Ansible, Docker Compose, 10/10 tests PASS)
+- **B2.3** — Exploiter, dépanner et superviser (monitoring Prometheus/Grafana/Loki, alertes)
+- **B3.1** — Protéger les données (Ansible Vault AES-256, secrets hors Git)
+- **B3.2** — Préserver l'identité numérique (LDAP Grafana, gestion comptes AD rentrée)
 
 ---
 
@@ -166,7 +183,7 @@ Automatisation de la création de comptes étudiants en masse :
 - **Controller** : Ansible 2.16+ sur poste Linux/Windows (WSL2)
 - **Cible** : Debian 12 (Bookworm), serveur IRIS Nice
 - **Orchestration** : Docker Compose pour la stack monitoring
-- **VCS** : GitHub (`Vinceadr/RP-08-Automatisation-Ansible`)
+- **VCS** : GitHub (`etykx/RP-02-Automatisation-Ansible`)
 - **École** : IRIS Nice — Promotion BTS SIO SISR 2025-2026
 
 ---
@@ -180,4 +197,4 @@ Automatisation de la création de comptes étudiants en masse :
 
 ---
 
-*Réalisation professionnelle validée dans le cadre de l'examen E5/E6 BTS SIO.*
+*Réalisation professionnelle — Épreuve E5 BTS SIO SISR.*
